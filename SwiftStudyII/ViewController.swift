@@ -63,7 +63,7 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "can pull request from leepc777 main to iOSPatrick main ?"
+        return "iOSPatrick has changes in his main. So how leepc777 see this changes in his main ?"
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
