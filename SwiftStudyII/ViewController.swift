@@ -11,9 +11,8 @@ class ViewController: UIViewController {
 
     var tableView = UITableView()
 //    var tableCell = UITableViewCell()
-    let tableCell = UITableViewCell(style: .subtitle, reuseIdentifier: "aCell")
-    var dataSourceTemp = ["a","b","c"]
-//    var dataSourceTemp = ["a"]
+//    let tableCell = UITableViewCell(style: .subtitle, reuseIdentifier: "aCell")
+    var dataSourceTemp = ["a","b","c","d","e","f","g","h","i"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +29,7 @@ class ViewController: UIViewController {
         tableView.rowHeight = self.view.bounds.height/5
         self.view.addSubview(tableView)
         
-//        tableCell = UITableViewCell(style: .subtitle, reuseIdentifier: "aCell")
 //        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "aCell")
-        
 
         
     }
@@ -47,24 +44,23 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("dataSourceTemp:\(dataSourceTemp.count)")
         return dataSourceTemp.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "myCell")
+        if cell == nil {
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: "myCell")
+        }
         
-        print("===> cellForRowsAt indexPath:\(indexPath)")
+        cell!.detailTextLabel?.text = "This is a test"
+        cell!.textLabel?.text = dataSourceTemp[indexPath.row]
+        cell!.accessoryType = .detailButton
+        cell!.imageView?.image = UIImage(systemName: "star")
         
-        
-        
-        // 1. this works. No need to regist any cell. But this doesn'thave dequeue and reuse cell
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "myTableCell")
-        cell.detailTextLabel?.text = "This is a test"
-        cell.textLabel?.text = dataSourceTemp[indexPath.row]
-        return cell
-        
-        
+        return cell!
     }
+    
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Section Title : Test"
